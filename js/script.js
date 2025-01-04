@@ -16,19 +16,40 @@ function loadTasks() {
 function addTaskToList(taskText, isCompleted, index) {
     const li = document.createElement("li");
     li.classList.toggle("completed", isCompleted);
-    
+
     const taskTextNode = document.createElement("span");
     taskTextNode.textContent = taskText;
     taskTextNode.addEventListener("click", () => toggleTaskCompletion(index));
-    
+
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "X";
     deleteButton.classList.add("delete");
     deleteButton.addEventListener("click", () => deleteTask(index));
-    
+
     li.appendChild(taskTextNode);
     li.appendChild(deleteButton);
-    
+
+    // Posicionando tareas en un círculo alrededor del centro
+    const angle = 360 / taskList.children.length;
+    const radius = 80; // Radio del círculo donde estarán las tareas
+    const x = Math.cos((angle * taskList.children.length) * (Math.PI / 180)) * radius;
+    const y = Math.sin((angle * taskList.children.length) * (Math.PI / 180)) * radius;
+
+    li.style.transform = `translate(${x}px, ${y}px)`;
+
+    // Agregar animación de rotación
+    li.classList.add("rotating");
+
+    // Detener la rotación cuando el mouse se acerque
+    li.addEventListener("mouseenter", function () {
+        li.classList.remove("rotating");
+    });
+
+    // Reanudar la rotación cuando el mouse se aleje
+    li.addEventListener("mouseleave", function () {
+        li.classList.add("rotating");
+    });
+
     taskList.appendChild(li);
 }
 
@@ -65,33 +86,3 @@ addTaskButton.addEventListener("click", addTask);
 
 // Cargar tareas al inicio
 loadTasks();
-
-document.getElementById("addTaskButton").addEventListener("click", function() {
-    const taskInput = document.getElementById("taskInput");
-    const taskList = document.getElementById("taskList");
-
-    if (taskInput.value.trim() !== "") {
-        // Crear un nuevo elemento li
-        const taskItem = document.createElement("li");
-        taskItem.textContent = taskInput.value.trim();
-        
-        // Agregar animación de rotación
-        taskItem.classList.add("rotating");
-
-        // Detener la rotación cuando el mouse se acerque
-        taskItem.addEventListener("mouseenter", function() {
-            taskItem.classList.remove("rotating");
-        });
-
-        // Reanudar la rotación cuando el mouse se aleje
-        taskItem.addEventListener("mouseleave", function() {
-            taskItem.classList.add("rotating");
-        });
-
-        // Agregar la tarea a la lista
-        taskList.appendChild(taskItem);
-
-        // Limpiar el campo de entrada
-        taskInput.value = "";
-    }
-});
