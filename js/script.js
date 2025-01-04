@@ -6,7 +6,8 @@ const taskList = document.getElementById("taskList");
 // Función para cargar las tareas desde localStorage
 function loadTasks() {
     const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    taskList.innerHTML = "";
+    taskList.innerHTML = ""; // Limpiar la lista actual
+
     tasks.forEach((task, index) => {
         addTaskToList(task.text, task.completed, index);
     });
@@ -29,26 +30,8 @@ function addTaskToList(taskText, isCompleted, index) {
     li.appendChild(taskTextNode);
     li.appendChild(deleteButton);
 
-    // Posicionando tareas en un círculo alrededor del centro
-    const angle = 360 / taskList.children.length;
-    const radius = 80; // Radio del círculo donde estarán las tareas
-    const x = Math.cos((angle * taskList.children.length) * (Math.PI / 180)) * radius;
-    const y = Math.sin((angle * taskList.children.length) * (Math.PI / 180)) * radius;
-
-    li.style.transform = `translate(${x}px, ${y}px)`;
-
-    // Agregar animación de rotación
-    li.classList.add("rotating");
-
-    // Detener la rotación cuando el mouse se acerque
-    li.addEventListener("mouseenter", function () {
-        li.classList.remove("rotating");
-    });
-
-    // Reanudar la rotación cuando el mouse se aleje
-    li.addEventListener("mouseleave", function () {
-        li.classList.add("rotating");
-    });
+    // Hacer que las tareas caigan desde arriba
+    li.style.animation = `fall 1s ease-out forwards`;
 
     taskList.appendChild(li);
 }
@@ -61,7 +44,7 @@ function addTask() {
         tasks.push({ text: taskText, completed: false });
         localStorage.setItem("tasks", JSON.stringify(tasks));
         addTaskToList(taskText, false, tasks.length - 1);
-        taskInput.value = "";
+        taskInput.value = ""; // Limpiar el input
     }
 }
 
@@ -78,7 +61,7 @@ function deleteTask(index) {
     const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
     tasks.splice(index, 1);
     localStorage.setItem("tasks", JSON.stringify(tasks));
-    loadTasks();
+    loadTasks(); // Recargar las tareas después de eliminar
 }
 
 // Event listener para agregar tareas
@@ -86,3 +69,4 @@ addTaskButton.addEventListener("click", addTask);
 
 // Cargar tareas al inicio
 loadTasks();
+
