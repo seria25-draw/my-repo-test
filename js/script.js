@@ -65,10 +65,14 @@ function deleteTask(index) {
 // Función para animar la caída de tareas (como lluvia)
 function animateRainEffect(li) {
     const startPositionX = Math.random() * window.innerWidth; // Posición aleatoria en X
-    const animationDuration = 6 + Math.random() * 3; // Duración aleatoria entre 3 y 6 segundos
-    const animationDelay = Math.random() * 3; // Retardo aleatorio para que no caigan todas al mismo tiempo
+    const startPositionY = -100; // Comienza fuera de la pantalla por encima (fuera de la vista)
+    const endPositionY = window.innerHeight + 50; // Termina fuera de la pantalla por debajo
+    const animationDuration = 4 + Math.random() * 4; // Duración aleatoria entre 4 y 8 segundos
+    const animationDelay = Math.random() * 2; // Retardo aleatorio para que no caigan todas al mismo tiempo
 
+    // Establecer la posición inicial y el estilo de animación
     li.style.left = `${startPositionX}px`; // Establecer posición aleatoria en X
+    li.style.top = `${startPositionY}px`; // Comienza fuera de la pantalla en la parte superior
     li.style.animation = `fall ${animationDuration}s ${animationDelay}s infinite ease-out`;
 
     // Pausar animación cuando el mouse pasa sobre la tarea
@@ -87,4 +91,5 @@ addTaskButton.addEventListener("click", addTask);
 
 // Cargar tareas al inicio
 loadTasks();
+
 

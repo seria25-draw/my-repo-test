@@ -1,4 +1,4 @@
-/* Estilo general del cuerpo */
+/* Estilo base para el body */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
@@ -7,10 +7,9 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    overflow: hidden; /* Para evitar barras de desplazamiento */
 }
 
-/* Contenedor de la lista de tareas */
+/* Contenedor principal de la lista */
 .todo-container {
     background-color: #fff;
     border-radius: 10px;
@@ -19,77 +18,41 @@ body {
     text-align: center;
     width: 300px;
     position: relative;
-    height: 350px; /* Ajuste para que la lluvia tenga espacio suficiente */
-    overflow: hidden;
+    height: 80vh; /* Contenedor más alto para dar espacio a la lluvia */
 }
 
-/* Estilos de la lista */
+/* Estilo de la lista de tareas */
 ul {
     list-style: none;
     padding: 0;
-    position: relative;
+    position: absolute;
     width: 100%;
     height: 100%;
     margin-top: 20px;
-    overflow: hidden; /* Ocultar las tareas que están fuera de la lista */
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
 }
 
-/* Estilos de las tareas */
+/* Estilo de las tareas (li) */
 li {
     display: inline-block;
     background-color: #f2f2f2;
     padding: 10px;
     margin: 5px;
-    border:2px solid blueviolet;
+    /* border-radius: 50%; */
     cursor: pointer;
     position: absolute;
-    opacity: 0;
-    animation: fall 3s infinite ease-out, float 4s infinite linear;
-    font-size: 14px;
+    transition: transform 0.2s;
 }
 
-/* Animación de caída de las tareas */
-@keyframes fall {
-    0% {
-        transform: translateY(-100%); /* Empieza fuera de la pantalla arriba */
-        opacity: 0;
-        left: 0;
-    }
-    50% {
-        opacity: 0.7;
-    }
-    100% {
-        transform: translateY(100%); /* Llega hasta el fondo */
-        opacity: 1;
-    }
-}
-
-
-/* Animación de dispersión horizontal aleatoria (flotando) */
-@keyframes float {
-    0% {
-        left: 0%;
-    }
-    50% {
-        left: 30%; /* Se mueve a la derecha */
-    }
-    100% {
-        left: 0%; /* Regresa a la izquierda */
-    }
-}
-
-/* Hover: Pausar la animación cuando el mouse pasa sobre la tarea */
-li:hover {
-    animation-play-state: paused;
-}
-
-/* Tareas completadas */
+/* Estilo para las tareas completadas */
 li.completed {
     text-decoration: line-through;
     background-color: #d3ffd3;
 }
 
-/* Botón de eliminar */
+/* Botón de eliminación de tarea */
 button.delete {
     background: none;
     border: none;
@@ -98,7 +61,36 @@ button.delete {
     cursor: pointer;
 }
 
-/* Estilos para el botón de agregar */
+/* Animación de caída de las tareas (como lluvia) */
+@keyframes fall {
+    0% {
+        transform: translateY(-100%); /* Empieza fuera de la pantalla por encima */
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5; /* Opacidad intermedia */
+    }
+    100% {
+        transform: translateY(100vh); /* Llega al fondo de la pantalla */
+        opacity: 1;
+    }
+}
+
+/* Animación de rotación (opcional, puedes mantenerla o eliminarla) */
+.rotating {
+    animation: rotate 4s linear infinite;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Estilo de los botones */
 button {
     margin-top: 10px;
     padding: 10px;
@@ -113,7 +105,7 @@ button:hover {
     background-color: #45a049;
 }
 
-/* Estilo del campo de entrada */
+/* Estilo para el input de tareas */
 input {
     padding: 10px;
     width: 80%;
