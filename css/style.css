@@ -1,16 +1,14 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* Estilos básicos */
 body {
     font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f4f4f4;
+    overflow: hidden;
 }
 
 .todo-container {
@@ -18,61 +16,73 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
     width: 300px;
 }
 
-h1 {
-    text-align: center;
-}
-
-input {
-    width: 100%;
+#taskInput {
+    width: 80%;
     padding: 10px;
     margin-bottom: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
     border-radius: 5px;
+    font-size: 16px;
 }
 
-button {
-    width: 100%;
+#addTaskButton {
+    width: 80%;
     padding: 10px;
+    margin-top: 10px;
     background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 5px;
+    font-size: 16px;
     cursor: pointer;
 }
 
-button:hover {
+#addTaskButton:hover {
     background-color: #45a049;
 }
 
-ul {
+/* Estilos de la lista */
+ul#taskList {
     list-style-type: none;
-    margin-top: 10px;
+    padding: 0;
 }
 
 li {
-    padding: 10px;
-    background-color: #f9f9f9;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-li.completed {
-    text-decoration: line-through;
-    color: gray;
-}
-
-button.delete {
-    background-color: red;
-    color: white;
-    border: none;
+    margin: 10px;
+    padding: 15px;
+    background-color: #f2f2f2;
     border-radius: 50%;
-    width: 25px;
-    height: 25px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: #333;
     cursor: pointer;
+    transition: transform 0.5s ease, background-color 0.3s ease;
 }
+
+li:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Animación de rotación */
+li.rotating {
+    animation: rotate 3s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+

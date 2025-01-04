@@ -65,3 +65,33 @@ addTaskButton.addEventListener("click", addTask);
 
 // Cargar tareas al inicio
 loadTasks();
+
+document.getElementById("addTaskButton").addEventListener("click", function() {
+    const taskInput = document.getElementById("taskInput");
+    const taskList = document.getElementById("taskList");
+
+    if (taskInput.value.trim() !== "") {
+        // Crear un nuevo elemento li
+        const taskItem = document.createElement("li");
+        taskItem.textContent = taskInput.value.trim();
+        
+        // Agregar animación de rotación
+        taskItem.classList.add("rotating");
+
+        // Detener la rotación cuando el mouse se acerque
+        taskItem.addEventListener("mouseenter", function() {
+            taskItem.classList.remove("rotating");
+        });
+
+        // Reanudar la rotación cuando el mouse se aleje
+        taskItem.addEventListener("mouseleave", function() {
+            taskItem.classList.add("rotating");
+        });
+
+        // Agregar la tarea a la lista
+        taskList.appendChild(taskItem);
+
+        // Limpiar el campo de entrada
+        taskInput.value = "";
+    }
+});
