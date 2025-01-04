@@ -1,7 +1,10 @@
 /* Estilo general del cuerpo */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    background-image: url('https://pbs.twimg.com/media/GD0jqLfXsAAIHdB?format=jpg&name=large');
+    background-size: cover; /* Esto hace que la imagen cubra toda la pantalla */
+    background-position: center center; /* Centra la imagen */
+    background-attachment: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,10 +15,10 @@ body {
 
 /* Contenedor de la lista de tareas */
 .todo-container {
-    background-color: #fff;
+    background-color: #000000;
     border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 12px 24px rgba(162, 0, 255, 0.966);
     text-align: center;
     width: 300px;
     position: relative;
