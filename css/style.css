@@ -40,7 +40,7 @@ li {
     background-color: #f2f2f2;
     padding: 10px;
     margin: 5px;
-    border-radius: 50%;
+    border:2px solid blueviolet;
     cursor: pointer;
     position: absolute;
     opacity: 0;
@@ -71,7 +71,7 @@ li {
         left: 0%;
     }
     50% {
-        left: 20%; /* Se mueve a la derecha */
+        left: 30%; /* Se mueve a la derecha */
     }
     100% {
         left: 0%; /* Regresa a la izquierda */
